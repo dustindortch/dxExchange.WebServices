@@ -1,7 +1,6 @@
 [Reflection.Assembly]::LoadFile("C:\Program Files\Microsoft\Exchange\Web Services\2.2\Microsoft.Exchange.WebServices.dll") | Out-Null
 
-Function Connect-Ews
-{
+Function Connect-Ews {
     [CmdletBinding()]
     Param
     (
@@ -53,8 +52,17 @@ Function Connect-Ews
     $Script:Service.AutodiscoverUrl($EmailAddress, $TestUrlCallback)
 }
 
-Function Get-EwsWellKnownFolder
-{
+Function Set-EwsImpersonationMailbox {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory)]
+        [String]$EmailAddress
+    )
+
+    $Script:Service.ImpersonatedUserId = New-Object Microsoft.Exchange.WebServices.Data.ImpersonatedUserId([Microsoft.Exchange.WebServices.Data.ConnectingIdType]::SmtpAddress,$EmailAddress)
+}
+
+Function Get-EwsWellKnownFolder {
     [CmdletBinding()]
     Param(
         [Microsoft.Exchange.WebServices.Data.WellKnownFolderName]$FolderName = "Inbox"
@@ -64,12 +72,31 @@ Function Get-EwsWellKnownFolder
     $Folder
 }
 
-Function Get-EwsFolderItems
-{
+Function Get-EwsFolder {
+    [CmdletBinding()]
+    Param(
+        $Path
+    )
+
+    #Incomplete function
+    $MailboxRoot = Get-EwsWellKnownFolder -FolderName MsgFolderRoot
+    $PathArray = $Path.Split("\")
+
+    For($i = 1; $i -lt $PathArray.Length; $i++) {
+        $FolderView = New-Object Microsoft.Exchange.WebServices.Data.FolderView(1)
+        $Search = New-Object Microsoft.Exchange.WebServices.Data.SearchFilter+IsEqualTo(
+            [Microsoft.Exchange.WebServices.Data.FolderSchema]::DisplayName,$Path[$i]
+        )
+    }
+}
+
+Function Get-EwsFolderItems {
     [CmdletBinding()]
     Param(
         [Parameter(Mandatory)]
         $Folder,
+        [Parameter(Mandatory=$False)]
+        $Id,
         [System.DateTime]$StartDate,
         [System.DateTime]$EndDate,
         [int]$ResultSize = 10,
@@ -79,7 +106,7 @@ Function Get-EwsFolderItems
     If(!$Skip){
         $ItemView = New-Object Microsoft.Exchange.WebServices.Data.ItemView($ResultSize)
     } Else {
-        $ItemView = New-Object Microsoft.Exchange.WebServices.Data.ItemView($ResultSize,0,[Microsoft.Exchange.WebServices.Data.OffsetBasePoint]::$Skip)
+        $ItemView = New-Object Microsoft.Exchange.WebServices.Data.ItemView($ResultSize,$Skip,[Microsoft.Exchange.WebServices.Data.OffsetBasePoint]::Beginning)
     }
 
     If($StartDate) {
@@ -96,16 +123,23 @@ Function Get-EwsFolderItems
         $Items = $Script:Service.FindItems($Folder.Id,$ItemView)
     }
 
-    $Items
+    Switch ($Folder.FolderClass) {
+        "IPF.Appointment" {
+            ForEach($Item in $Items) {
+                $ItemId = $Item.Id.UniqueId
+                $ItemId
+                [Microsoft.Exchange.WebServices.Data.Appointment]::Bind((Get-EwsServiceConnection),$ItemId)
+            }
+        }
+        Default {$Items}
+    }
 }
 
-Function Get-EwsServiceConnection
-{
+Function Get-EwsServiceConnection {
     $Script:Service
 }
 
-Function Send-EwsMessage
-{
+Function Send-EwsMessage {
     Param(
         [Parameter(Mandatory)]
         [String]$To,
@@ -127,4 +161,30 @@ Function Send-EwsMessage
         $Message.Attachments.AddItemAttachment($ItemAttachment)
     }
     $Message.SendAndSaveCopy((Get-EwsWellKnownFolder -FolderName SentItems).Id)
+}
+
+Function Remove-EwsItem {
+    Param(
+        $Item,
+        [Microsoft.Exchange.WebServices.Data.DeleteMode]$DeleteType
+    )
+    
+    $Item.Delete($DeleteType)
+}
+
+Function Move-EwsItem {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Mandatory)]
+        $Item,
+        [Parameter(Mandatory)]
+        $TargetFolder,
+        [ValidateSet("Move","Copy")]
+        [String]$MoveType = "Move"
+    )
+
+    Switch($Move) {
+        "Move" {$Item.Move($TargetFolder)}
+        "Copy" {$Item.Copy($TargetFolder)}
+    }
 }
