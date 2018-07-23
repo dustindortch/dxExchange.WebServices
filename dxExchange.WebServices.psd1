@@ -1,6 +1,6 @@
 @{
-    RootModule = 'xExchange.WebServices.psm1'
-    ModuleVersion = '0.1'
+    RootModule = 'dxExchange.WebServices.psm1'
+    ModuleVersion = '0.2'
     Author = 'Dustin Dortch'
     Description = 'Exchange Web Services PowerShell Module'
     PowerShellVersion = '5.0'
@@ -10,9 +10,9 @@
     CmdletsToExport = "*"
     VariablesToExport = "*"
     AliasesToExport = "*"
-    ModuleList = @("xExchange.WebServices")
+    ModuleList = @("dxExchange.WebServices")
     DefaultCommandPrefix = ''
-    FileList = @("xExchange.WebServices.psd1","xExchange.WebServices.psm1")
+    FileList = @("dxExchange.WebServices.psd1","dxExchange.WebServices.psm1")
     PrivateData = @{
         PSData = @{
             Tags = @('EWS')
