@@ -30,7 +30,7 @@ CompanyName = 'Dustin Dortch'
 Copyright = '(c) 2018 Dustin Dortch. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Module supports connecting to EWS for Exchange Server 2007, or newer, and Exchange Online (without Modern Authentication). Requires functional AutoDiscover.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 # PowerShellVersion = ''
