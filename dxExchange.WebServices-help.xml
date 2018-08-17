@@ -1,0 +1,1433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml" xmlns="http://msh">
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Connect-Ews</command:name>
+      <command:verb>Connect</command:verb>
+      <command:noun>Ews</command:noun>
+      <maml:description>
+        <maml:para>Creates an Exchange Web Services connection using the EWS API 2.2</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Creates an Exchange Web Services connction using the EWS API 2.2 via AutoDiscover.  The UserPrincipalName/UserName is assumed to be the email address unless the EmailAddress parameter is specified for the AutoDiscover lookup.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Connect-Ews</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+          <maml:name>Credential</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the credential to use to connect to EWS.  To obtain a PSCredential object, use the Get-Credential cmdlet.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+          <maml:name>EmailAddress</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the email address to use for AutoDiscover lookups.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
+          <dev:type>
+            <maml:name>MailAddress</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
+          <maml:name>Version</maml:name>
+          <maml:Description>
+            <maml:para>The version of Exchange server to which to connect.  Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013_SP1</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-Ews</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Username, User">
+          <maml:name>UserPrincipalName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;&lt;SamAccountName&gt; (for Exhange Server on-premises, only).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+          <maml:name>EmailAddress</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the email address to use for AutoDiscover lookups.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
+          <dev:type>
+            <maml:name>MailAddress</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Password</maml:name>
+          <maml:Description>
+            <maml:para>Specifies a password supplied as a SecureString .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+          <dev:type>
+            <maml:name>SecureString</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
+          <maml:name>Version</maml:name>
+          <maml:Description>
+            <maml:para>The version of Exchange server to which to connect.  Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013_SP1</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <maml:name>Credential</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the credential to use to connect to EWS.  To obtain a PSCredential object, use the Get-Credential cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <maml:name>EmailAddress</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the email address to use for AutoDiscover lookups.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
+        <dev:type>
+          <maml:name>MailAddress</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Password</maml:name>
+        <maml:Description>
+          <maml:para>Specifies a password supplied as a SecureString .</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+        <dev:type>
+          <maml:name>SecureString</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Username, User">
+        <maml:name>UserPrincipalName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;&lt;SamAccountName&gt; (for Exhange Server on-premises, only).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
+        <maml:name>Version</maml:name>
+        <maml:Description>
+          <maml:para>The version of Exchange server to which to connect.  Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
+        <dev:type>
+          <maml:name>ExchangeVersion</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Connect-Ews -Credential $PSCredential
+
+KeepAlive      Url                                                              ImpersonatedUserId
+---------      ---                                                              ------------------
+True           https://outlook.office365.com/EWS/Exchange.asmx</dev:code>
+        <dev:remarks>
+          <maml:para>Creates an Exchange Web Services connection using the supplied PSCredential.  The PSCredential can be created like $PSCredential = Get-Credential and entering the credentials in the prompt.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:linkText>
+        <maml:uri>https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data.exchangeservice?view=exchange-ews-api</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-EwsFolderItem</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>EwsFolderItem</command:noun>
+      <maml:description>
+        <maml:para>Gets items from specified FolderName.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Getss items from the specified folder and allows for various filtering criteria, including start and end dates, first or last number of items, skip items for paging, and exclude item details (like the item body) to improve the speed.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-EwsFolderItem</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
+          <maml:name>FolderName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the Microsoft.Exchange.WebServices.Data.Folder to search.  Can be set with the Get-EwsWellKnownFolder cmdlet.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.Folder</command:parameterValue>
+          <dev:type>
+            <maml:name>Microsoft.Exchange.WebServices.Data.Folder</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EndDate</maml:name>
+          <maml:Description>
+            <maml:para>Used to limit criteria to items before specified date</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Last</maml:name>
+          <maml:Description>
+            <maml:para>Specifies to get the last N items from the folder.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoDetails</maml:name>
+          <maml:Description>
+            <maml:para>Specifies to not get the details of the item, such as the Body , but at a significant speed improvement.  The Id properties can then be passed to the Get-EwsItem cmdlet to get the details.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+          <maml:name>Service</maml:name>
+          <maml:Description>
+            <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
+          <dev:type>
+            <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$Script:Service</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Skip</maml:name>
+          <maml:Description>
+            <maml:para>Specifies N items to skip, which can be used to page through additional items on subsequent executions.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>StartDate</maml:name>
+          <maml:Description>
+            <maml:para>Used to limit criteria to items after specified date</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Get-EwsFolderItem</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
+          <maml:name>FolderName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the Microsoft.Exchange.WebServices.Data.Folder to search.  Can be set with the Get-EwsWellKnownFolder cmdlet.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.Folder</command:parameterValue>
+          <dev:type>
+            <maml:name>Microsoft.Exchange.WebServices.Data.Folder</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>EndDate</maml:name>
+          <maml:Description>
+            <maml:para>Used to limit criteria to items before specified date</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>NoDetails</maml:name>
+          <maml:Description>
+            <maml:para>Specifies to not get the details of the item, such as the Body , but at a significant speed improvement.  The Id properties can then be passed to the Get-EwsItem cmdlet to get the details.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="First">
+          <maml:name>ResultSize</maml:name>
+          <maml:Description>
+            <maml:para>Limits results to the first N items.  The default value is 10, but up to 1000 items can be retrieved at once.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+          <maml:name>Service</maml:name>
+          <maml:Description>
+            <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
+          <dev:type>
+            <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$Script:Service</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Skip</maml:name>
+          <maml:Description>
+            <maml:para>Specifies N items to skip, which can be used to page through additional items on subsequent executions.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>StartDate</maml:name>
+          <maml:Description>
+            <maml:para>Used to limit criteria to items after specified date</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>EndDate</maml:name>
+        <maml:Description>
+          <maml:para>Used to limit criteria to items before specified date</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+        <dev:type>
+          <maml:name>DateTime</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
+        <maml:name>FolderName</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the Microsoft.Exchange.WebServices.Data.Folder to search.  Can be set with the Get-EwsWellKnownFolder cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.Folder</command:parameterValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.Folder</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Last</maml:name>
+        <maml:Description>
+          <maml:para>Specifies to get the last N items from the folder.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>NoDetails</maml:name>
+        <maml:Description>
+          <maml:para>Specifies to not get the details of the item, such as the Body , but at a significant speed improvement.  The Id properties can then be passed to the Get-EwsItem cmdlet to get the details.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="First">
+        <maml:name>ResultSize</maml:name>
+        <maml:Description>
+          <maml:para>Limits results to the first N items.  The default value is 10, but up to 1000 items can be retrieved at once.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <maml:name>Service</maml:name>
+        <maml:Description>
+          <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>$Script:Service</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Skip</maml:name>
+        <maml:Description>
+          <maml:para>Specifies N items to skip, which can be used to page through additional items on subsequent executions.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>StartDate</maml:name>
+        <maml:Description>
+          <maml:para>Used to limit criteria to items after specified date</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+        <dev:type>
+          <maml:name>DateTime</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.Item</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-EwsFolderItem -FolderName $Folder -First 2
+
+From                                    Sent                 Subject
+----                                    ------------         -------
+Service &lt;SMTP:service@talespintoys.com&gt; 8/16/2018 8:49:09 PM Unimportant message from the Service
+BigBoss &lt;SMTP:boss@contoso.com&gt;         8/16/2018 8:47:19 PM Urgent message from the boss</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the first two messages from the specified folder.  The Folder can be specific with the Get-EwsWellKnownFolder cmdlet.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Microsoft.Exchange.WebServices.Data.Item</maml:linkText>
+        <maml:uri>https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data.item?view=exchange-ews-api</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-EwsWellKnownFolder</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>EwsWellKnownFolder</command:noun>
+      <maml:description>
+        <maml:para>Get the object of a well known folder in an Exchange mailbox.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Get the object of a well known folder in an Exchange mailbox, such as the Inbox, Sent Items, Deleted Items, etc.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-EwsWellKnownFolder</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
+          <maml:name>FolderName</maml:name>
+          <maml:Description>
+            <maml:para>Supply a Folder object.  Can be tab completed as it uses the type accelerator.  Only valid well known folders can be passed.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Calendar</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Contacts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DeletedItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Drafts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Inbox</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Journal</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Notes</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Outbox</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SentItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Tasks</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">MsgFolderRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">PublicFoldersRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Root</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">JunkEmail</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SearchFolders</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">VoiceMail</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsDeletions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsVersions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsPurges</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveMsgFolderRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveDeletedItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsDeletions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsVersions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsPurges</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SyncIssues</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Conflicts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LocalFailures</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ServerFailures</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecipientCache</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">QuickContacts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ConversationHistory</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ToDoSearch</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">WellKnownFolderName</command:parameterValue>
+          <dev:type>
+            <maml:name>WellKnownFolderName</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+          <maml:name>Service</maml:name>
+          <maml:Description>
+            <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
+          <dev:type>
+            <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$Script:Service</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
+        <maml:name>FolderName</maml:name>
+        <maml:Description>
+          <maml:para>Supply a Folder object.  Can be tab completed as it uses the type accelerator.  Only valid well known folders can be passed.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">WellKnownFolderName</command:parameterValue>
+        <dev:type>
+          <maml:name>WellKnownFolderName</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <maml:name>Service</maml:name>
+        <maml:Description>
+          <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>$Script:Service</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.Folder</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-EwsWellKnownFolder -FolderName Inbox
+
+FolderClass    DisplayName                      TotalCount   UnreadCount
+-----------    -----------                      ----------   -----------
+IPF.Note       Inbox                            76496        60099</dev:code>
+        <dev:remarks>
+          <maml:para>Returns the Inbox folder within the Exchange mailbox.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Microsoft.Exchange.WebServices.Data.Folder</maml:linkText>
+        <maml:uri>https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data.folder?view=exchange-ews-api</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Move-EwsItem</command:name>
+      <command:verb>Move</command:verb>
+      <command:noun>EwsItem</command:noun>
+      <maml:description>
+        <maml:para>Moves or copies an item to the specified target folder.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Moves or copies an item to the specified target folder, with a default action of move.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Move-EwsItem</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Item</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the item(s) which to move/copy.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Item[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Item[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>TargetFolder</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the target folder of type Folder .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Folder</command:parameterValue>
+          <dev:type>
+            <maml:name>Folder</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>MoveType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies whether to move or copy the item(s).</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Move</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Copy</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Move</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Item</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the item(s) which to move/copy.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Item[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Item[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>MoveType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies whether to move or copy the item(s).</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Move</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>TargetFolder</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the target folder of type Folder .</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Folder</command:parameterValue>
+        <dev:type>
+          <maml:name>Folder</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:Description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Move-EwsItem -Item $Item -TargetFolder $Folder
+
+Are you sure that you want to move the item?
+Microsoft.Exchange.WebServices.Data.EmailMessage
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"):</dev:code>
+        <dev:remarks>
+          <maml:para>Moves item $Item to target folder $Folder</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Move-EwsItem -Item $Item -TargetFolder $Folder -MoveType Copy
+
+Are you sure that you want to copy the item?
+Microsoft.Exchange.WebServices.Data.EmailMessage
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"):</dev:code>
+        <dev:remarks>
+          <maml:para>Copies item $Item to target folder $Folder</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Remove-EwsItem</command:name>
+      <command:verb>Remove</command:verb>
+      <command:noun>EwsItem</command:noun>
+      <maml:description>
+        <maml:para>Removes the specified item(s).</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Removes the specified item(s) from the mailbox, moving the item to the Deleted Items folder, by default.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Remove-EwsItem</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+          <maml:name>Item</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the item(s) which to delete.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Item[]</command:parameterValue>
+          <dev:type>
+            <maml:name>Item[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+          <maml:name>Confirm</maml:name>
+          <maml:Description>
+            <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DeleteMode</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the delete mode:</maml:para>
+            <maml:para>MoveToDeletedItems: moves the item to the Deleted Items folder SoftDelete: deletes the item and places it in the Recoverable Items folder HardDelete: permanently deletes the item, unless a hold mechanism is in place.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">DeleteMode</command:parameterValue>
+          <dev:type>
+            <maml:name>DeleteMode</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+          <maml:name>WhatIf</maml:name>
+          <maml:Description>
+            <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="True (ByValue)" position="0" aliases="none">
+        <maml:name>Item</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the item(s) which to delete.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Item[]</command:parameterValue>
+        <dev:type>
+          <maml:name>Item[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:Description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DeleteMode</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the delete mode:</maml:para>
+          <maml:para>MoveToDeletedItems: moves the item to the Deleted Items folder SoftDelete: deletes the item and places it in the Recoverable Items folder HardDelete: permanently deletes the item, unless a hold mechanism is in place.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">DeleteMode</command:parameterValue>
+        <dev:type>
+          <maml:name>DeleteMode</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:Description>
+          <maml:para>Shows what would happen if the cmdlet runs. The cmdlet is not run.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-EwsItem -Item $Item</dev:code>
+        <dev:remarks>
+          <maml:para>Moves the specified item to the Deleted Items folder.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-EwsItem -Item $Item -DeleteMode SoftDelete
+
+Are you sure that you want to SoftDelete the item?
+Microsoft.Exchange.WebServices.Data.EmailMessage
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"):</dev:code>
+        <dev:remarks>
+          <maml:para>Deletes the specified item, but it is retained the the Recoverable Items folder.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Remove-EwsItem -Item $Item -DeleteMode HardDelete
+
+Are you sure that you want to HardDelete the item?
+Microsoft.Exchange.WebServices.Data.EmailMessage
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "Y"):</dev:code>
+        <dev:remarks>
+          <maml:para>Deletes the specified item in an unrecoverable method, without a hold mechanism in place.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Send-EwsMessage</command:name>
+      <command:verb>Send</command:verb>
+      <command:noun>EwsMessage</command:noun>
+      <maml:description>
+        <maml:para>Sends a message as the signed in account.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Sends a message as the signed in account.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Send-EwsMessage</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>To</maml:name>
+          <maml:Description>
+            <maml:para>The recipient(s) of the message.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">MailAddress[]</command:parameterValue>
+          <dev:type>
+            <maml:name>MailAddress[]</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>Subject</maml:name>
+          <maml:Description>
+            <maml:para>The subject of the message.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>Body</maml:name>
+          <maml:Description>
+            <maml:para>The body of the email message.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
+          <maml:name>ItemAttachment</maml:name>
+          <maml:Description>
+            <maml:para>The file attachment to send.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>BodyType</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the body type, either Text (default) or HTML.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">BodyType</command:parameterValue>
+          <dev:type>
+            <maml:name>BodyType</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>Text</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>DoNotKeep</maml:name>
+          <maml:Description>
+            <maml:para>Do not place the item in the Sent Items folder.</maml:para>
+          </maml:Description>
+          <dev:type>
+            <maml:name>SwitchParameter</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Service</maml:name>
+          <maml:Description>
+            <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ExchangeService</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeService</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>Body</maml:name>
+        <maml:Description>
+          <maml:para>The body of the email message.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="3" aliases="none">
+        <maml:name>ItemAttachment</maml:name>
+        <maml:Description>
+          <maml:para>The file attachment to send.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>Subject</maml:name>
+        <maml:Description>
+          <maml:para>The subject of the message.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>To</maml:name>
+        <maml:Description>
+          <maml:para>The recipient(s) of the message.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">MailAddress[]</command:parameterValue>
+        <dev:type>
+          <maml:name>MailAddress[]</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>BodyType</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the body type, either Text (default) or HTML.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">BodyType</command:parameterValue>
+        <dev:type>
+          <maml:name>BodyType</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>Text</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>DoNotKeep</maml:name>
+        <maml:Description>
+          <maml:para>Do not place the item in the Sent Items folder.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Service</maml:name>
+        <maml:Description>
+          <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ExchangeService</command:parameterValue>
+        <dev:type>
+          <maml:name>ExchangeService</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Void</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-EwsMessage -To user@contoso.com -Subject 'EWS Message from Me' -Body 'Message here'</dev:code>
+        <dev:remarks>
+          <maml:para>Sends a message to user@contoso.com as the authenticated user.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-EwsMessage -To user@contoso.com -Subject 'EWS Message from Me' -Body 'Message here' -Service $ImpersonatedService</dev:code>
+        <dev:remarks>
+          <maml:para>Sends a message to user@contoso.com as the Impersonated Account.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 3 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Send-EwsMessage -To user@contoso.com -Subject 'EWS Message from Me' -Body 'Message here' -DoNotKeep</dev:code>
+        <dev:remarks>
+          <maml:para>Sends a message to user@contoso.com as the authenticated user and does not keep it in the Sent Items folder.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Set-EwsImpersonationMailbox</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>EwsImpersonationMailbox</command:noun>
+      <maml:description>
+        <maml:para>Set which mailbox to access via Application Impersonation rights (requires rights already established).</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Set which mailbox to access via Application Impersonation rights.  Use the &lt;MailAddress&gt; with the Connect-Ews cmdlet when the identity associated with the authentication credentials has no assigned mailbox prior to running Set-EwsImpersonationMailbox .  Can be used to set the default service or any saved service object.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-EwsImpersonationMailbox</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="None">
+          <maml:name>EmailAddress</maml:name>
+          <maml:Description>
+            <maml:para>Provide a valid recipient address for an Exchange mailbox to which Application Impersonation rights have been granted.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
+          <dev:type>
+            <maml:name>MailAddress</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+          <maml:name>Service</maml:name>
+          <maml:Description>
+            <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
+          <dev:type>
+            <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>$Script:Service</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="None">
+        <maml:name>EmailAddress</maml:name>
+        <maml:Description>
+          <maml:para>Provide a valid recipient address for an Exchange mailbox to which Application Impersonation rights have been granted.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
+        <dev:type>
+          <maml:name>MailAddress</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <maml:name>Service</maml:name>
+        <maml:Description>
+          <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>$Script:Service</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.ExchangeService</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Set-EwsImpersonationMailbox -EmailAddress $MailAddress
+
+KeepAlive      Url                                                              ImpersonatedUserId
+---------      ---                                                              ------------------
+True           https://outlook.office365.com/EWS/Exchange.asmx                  user@contoso.com</dev:code>
+        <dev:remarks>
+          <maml:para>In the default ExchangeService, set the ImperonatedUserId in the EWS Managed API for the service.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Set-EwsImpersonationMailbox -EmailAddress $MailAddress -Service $Service
+
+KeepAlive      Url                                                              ImpersonatedUserId
+---------      ---                                                              ------------------
+True           https://outlook.office365.com/EWS/Exchange.asmx                  user@contoso.com</dev:code>
+        <dev:remarks>
+          <maml:para>In the $Service ExchangeService object, set the ImperonatedUserId in the EWS Managed API for the service.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>microsoft.exchange.webservices.data.impersonateduserid</maml:linkText>
+        <maml:uri>https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data.impersonateduserid?view=exchange-ews-api</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+</helpItems>
