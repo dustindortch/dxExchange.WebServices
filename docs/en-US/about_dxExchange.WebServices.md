@@ -43,7 +43,7 @@ PS C:\> $Items
 ```
 From                                    Sent                 Subject
 ----                                    ------------         -------
-Service <SMTP:service@talespintoys.com> 8/16/2018 8:49:09 PM Unimportant message from the Service
+Service <SMTP:service@tailspintoys.com> 8/16/2018 8:49:09 PM Unimportant message from the Service
 BigBoss <SMTP:boss@contoso.com>         8/16/2018 8:47:19 PM Urgent message from the boss
 ```
 
