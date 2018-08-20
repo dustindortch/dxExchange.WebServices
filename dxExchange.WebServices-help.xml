@@ -233,7 +233,7 @@ True           https://outlook.office365.com/EWS/Exchange.asmx</dev:code>
       <command:verb>Get</command:verb>
       <command:noun>EwsFolderItem</command:noun>
       <maml:description>
-        <maml:para>Gets items from specified FolderName.</maml:para>
+        <maml:para>Gets items from specified Folder.</maml:para>
       </maml:description>
     </command:details>
     <maml:description>
@@ -242,8 +242,8 @@ True           https://outlook.office365.com/EWS/Exchange.asmx</dev:code>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Get-EwsFolderItem</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
-          <maml:name>FolderName</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="FolderName">
+          <maml:name>Folder</maml:name>
           <maml:Description>
             <maml:para>Specifies the Microsoft.Exchange.WebServices.Data.Folder to search.  Can be set with the Get-EwsWellKnownFolder cmdlet.</maml:para>
           </maml:Description>
@@ -328,8 +328,8 @@ True           https://outlook.office365.com/EWS/Exchange.asmx</dev:code>
       </command:syntaxItem>
       <command:syntaxItem>
         <maml:name>Get-EwsFolderItem</maml:name>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
-          <maml:name>FolderName</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="FolderName">
+          <maml:name>Folder</maml:name>
           <maml:Description>
             <maml:para>Specifies the Microsoft.Exchange.WebServices.Data.Folder to search.  Can be set with the Get-EwsWellKnownFolder cmdlet.</maml:para>
           </maml:Description>
@@ -426,8 +426,8 @@ True           https://outlook.office365.com/EWS/Exchange.asmx</dev:code>
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Folder">
-        <maml:name>FolderName</maml:name>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="FolderName">
+        <maml:name>Folder</maml:name>
         <maml:Description>
           <maml:para>Specifies the Microsoft.Exchange.WebServices.Data.Folder to search.  Can be set with the Get-EwsWellKnownFolder cmdlet.</maml:para>
         </maml:Description>
@@ -539,11 +539,11 @@ True           https://outlook.office365.com/EWS/Exchange.asmx</dev:code>
     <command:examples>
       <command:example>
         <maml:title>-------------------------- Example 1 --------------------------</maml:title>
-        <dev:code>PS C:\&gt; Get-EwsFolderItem -FolderName $Folder -First 2
+        <dev:code>PS C:\&gt; Get-EwsFolderItem -Folder $Folder -First 2
 
 From                                    Sent                 Subject
 ----                                    ------------         -------
-Service &lt;SMTP:service@talespintoys.com&gt; 8/16/2018 8:49:09 PM Unimportant message from the Service
+Service &lt;SMTP:service@tailspintoys.com&gt; 8/16/2018 8:49:09 PM Unimportant message from the Service
 BigBoss &lt;SMTP:boss@contoso.com&gt;         8/16/2018 8:47:19 PM Urgent message from the boss</dev:code>
         <dev:remarks>
           <maml:para>Gets the first two messages from the specified folder.  The Folder can be specific with the Get-EwsWellKnownFolder cmdlet.</maml:para>

@@ -8,19 +8,19 @@ schema: 2.0.0
 # Get-EwsFolderItem
 
 ## SYNOPSIS
-Gets items from specified FolderName.
+Gets items from specified Folder.
 
 ## SYNTAX
 
 ### ResultSize (Default)
 ```
-Get-EwsFolderItem [-FolderName] <Folder> [-StartDate <DateTime>] [-EndDate <DateTime>] [-ResultSize <Int32>]
+Get-EwsFolderItem [-Folder] <Folder> [-StartDate <DateTime>] [-EndDate <DateTime>] [-ResultSize <Int32>]
  [-Skip <Int32>] [-NoDetails] [-Service <ExchangeService>] [<CommonParameters>]
 ```
 
 ### Last
 ```
-Get-EwsFolderItem [-FolderName <Folder>] [-StartDate <DateTime>] [-EndDate <DateTime>] [-Last <Int32>]
+Get-EwsFolderItem [-Folder <Folder>] [-StartDate <DateTime>] [-EndDate <DateTime>] [-Last <Int32>]
  [-Skip <Int32>] [-NoDetails] [-Service <ExchangeService>] [<CommonParameters>]
 ```
 
@@ -31,12 +31,12 @@ Getss items from the specified folder and allows for various filtering criteria,
 
 ### Example 1
 ```powershell
-PS C:\> Get-EwsFolderItem -FolderName $Folder -First 2
+PS C:\> Get-EwsFolderItem -Folder $Folder -First 2
 ```
 ```
 From                                    Sent                 Subject
 ----                                    ------------         -------
-Service <SMTP:service@talespintoys.com> 8/16/2018 8:49:09 PM Unimportant message from the Service
+Service <SMTP:service@tailspintoys.com> 8/16/2018 8:49:09 PM Unimportant message from the Service
 BigBoss <SMTP:boss@contoso.com>         8/16/2018 8:47:19 PM Urgent message from the boss
 ```
 
@@ -59,13 +59,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FolderName
+### -Folder
 Specifies the **Microsoft.Exchange.WebServices.Data.Folder** to search.  Can be set with the **Get-EwsWellKnownFolder** cmdlet.
 
 ```yaml
 Type: Microsoft.Exchange.WebServices.Data.Folder
 Parameter Sets: (All)
-Aliases: Folder
+Aliases: FolderName
 
 Required: False
 Position: 0

@@ -5,9 +5,9 @@ Function Get-EwsFolderItem {
         [Parameter(Position=0,Mandatory)]
         [Parameter(ParameterSetName='ResultSize')]
         [Parameter(ParameterSetName='Last')]
-        [Alias('Folder')]
+        [Alias('FolderName')]
         [ValidateScript({$_ -as [Microsoft.Exchange.WebServices.Data.Folder]})]
-        [PSObject]$FolderName,
+        [PSObject]$Folder,
 
         [Parameter(ParameterSetName='ResultSize')]
         [Parameter(ParameterSetName='Last')]
@@ -57,9 +57,9 @@ Function Get-EwsFolderItem {
             $BeforeFilter = New-Object Microsoft.Exchange.WebServices.Data.SearchFilter+IsLessThan([Microsoft.Exchange.WebServices.Data.ItemSchema]::DateTimeReceived,$EndDate)
             $SearchFilter.Add($BeforeFilter)
         }
-        $Items = $Service.FindItems($FolderName.Id,$SearchFilter,$ItemView)
+        $Items = $Service.FindItems($Folder.Id,$SearchFilter,$ItemView)
     } Else {
-        $Items = $Service.FindItems($FolderName.Id,$ItemView)
+        $Items = $Service.FindItems($Folder.Id,$ItemView)
     }
 
     If($NoDetails) {
