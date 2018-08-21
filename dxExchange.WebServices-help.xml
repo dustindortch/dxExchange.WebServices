@@ -10,15 +10,15 @@
       </maml:description>
     </command:details>
     <maml:description>
-      <maml:para>Creates an Exchange Web Services connction using the EWS API 2.2 via AutoDiscover.  The UserPrincipalName/UserName is assumed to be the email address unless the EmailAddress parameter is specified for the AutoDiscover lookup.</maml:para>
+      <maml:para>Creates an Exchange Web Services connction using the EWS API 2.2. The UserPrincipalName/UserName is assumed to be the email address unless the EmailAddress parameter is specified for the AutoDiscover lookup.  Alternatively, an EWS endpoint can be supplied to entirely bypass the Autodiscover process (which is significantly faster).</maml:para>
     </maml:description>
     <command:syntax>
       <command:syntaxItem>
         <maml:name>Connect-Ews</maml:name>
-        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>Credential</maml:name>
           <maml:Description>
-            <maml:para>Specifies the credential to use to connect to EWS.  To obtain a PSCredential object, use the Get-Credential cmdlet.</maml:para>
+            <maml:para>Specifies the credential to use to connect to EWS supplied as a PSCredential .</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
           <dev:type>
@@ -27,10 +27,57 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
+          <maml:name>Version</maml:name>
+          <maml:Description>
+            <maml:para>The version of Exchange server to which to connect. Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013_SP1</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Endpoint</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the EWS Endpoint to use in order to bypass the Autodiscover process as an Uri .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-Ews</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the credential to use to connect to EWS supplied as a PSCredential .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>EmailAddress</maml:name>
           <maml:Description>
-            <maml:para>Specifies the email address to use for AutoDiscover lookups.</maml:para>
+            <maml:para>Specifies the email address to use for AutoDiscover lookups supplied as a MailAddress .</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
           <dev:type>
@@ -42,7 +89,42 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
           <maml:name>Version</maml:name>
           <maml:Description>
-            <maml:para>The version of Exchange server to which to connect.  Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+            <maml:para>The version of Exchange server to which to connect. Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013_SP1</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-Ews</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the credential to use to connect to EWS supplied as a PSCredential .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
+          <maml:name>Version</maml:name>
+          <maml:Description>
+            <maml:para>The version of Exchange server to which to connect. Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
           </maml:Description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
@@ -65,7 +147,7 @@
         <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Username, User">
           <maml:name>UserPrincipalName</maml:name>
           <maml:Description>
-            <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;&lt;SamAccountName&gt; (for Exhange Server on-premises, only).</maml:para>
+            <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;\&lt;SamAccountName&gt; (for Exchange Server on-premises, only).</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
           <dev:type>
@@ -74,10 +156,10 @@
           </dev:type>
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
-        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
           <maml:name>EmailAddress</maml:name>
           <maml:Description>
-            <maml:para>Specifies the email address to use for AutoDiscover lookups.</maml:para>
+            <maml:para>Specifies the email address to use for AutoDiscover lookups supplied as a MailAddress .</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
           <dev:type>
@@ -101,7 +183,7 @@
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
           <maml:name>Version</maml:name>
           <maml:Description>
-            <maml:para>The version of Exchange server to which to connect.  Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+            <maml:para>The version of Exchange server to which to connect. Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
           </maml:Description>
           <command:parameterValueGroup>
             <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
@@ -119,12 +201,118 @@
           <dev:defaultValue>None</dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-Ews</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Username, User">
+          <maml:name>UserPrincipalName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;\&lt;SamAccountName&gt; (for Exchange Server on-premises, only).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Password</maml:name>
+          <maml:Description>
+            <maml:para>Specifies a password supplied as a SecureString .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+          <dev:type>
+            <maml:name>SecureString</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
+          <maml:name>Version</maml:name>
+          <maml:Description>
+            <maml:para>The version of Exchange server to which to connect. Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013_SP1</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Connect-Ews</maml:name>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Username, User">
+          <maml:name>UserPrincipalName</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;\&lt;SamAccountName&gt; (for Exchange Server on-premises, only).</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Password</maml:name>
+          <maml:Description>
+            <maml:para>Specifies a password supplied as a SecureString .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">SecureString</command:parameterValue>
+          <dev:type>
+            <maml:name>SecureString</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
+          <maml:name>Version</maml:name>
+          <maml:Description>
+            <maml:para>The version of Exchange server to which to connect. Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2007_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP1</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2010_SP2</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Exchange2013_SP1</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeVersion</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+          <maml:name>Endpoint</maml:name>
+          <maml:Description>
+            <maml:para>Specifies the EWS Endpoint to use in order to bypass the Autodiscover process as an Uri .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+          <dev:type>
+            <maml:name>Uri</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
     </command:syntax>
     <command:parameters>
-      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>Credential</maml:name>
         <maml:Description>
-          <maml:para>Specifies the credential to use to connect to EWS.  To obtain a PSCredential object, use the Get-Credential cmdlet.</maml:para>
+          <maml:para>Specifies the credential to use to connect to EWS supplied as a PSCredential .</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
         <dev:type>
@@ -133,10 +321,10 @@
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
       </command:parameter>
-      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
         <maml:name>EmailAddress</maml:name>
         <maml:Description>
-          <maml:para>Specifies the email address to use for AutoDiscover lookups.</maml:para>
+          <maml:para>Specifies the email address to use for AutoDiscover lookups supplied as a MailAddress .</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">MailAddress</command:parameterValue>
         <dev:type>
@@ -160,7 +348,7 @@
       <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="Username, User">
         <maml:name>UserPrincipalName</maml:name>
         <maml:Description>
-          <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;&lt;SamAccountName&gt; (for Exhange Server on-premises, only).</maml:para>
+          <maml:para>Specifies the username, commonly in the format of UserPrincipalName, but can also be in the Netbios format &lt;Domain&gt;\&lt;SamAccountName&gt; (for Exchange Server on-premises, only).</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
         <dev:type>
@@ -172,11 +360,23 @@
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="V">
         <maml:name>Version</maml:name>
         <maml:Description>
-          <maml:para>The version of Exchange server to which to connect.  Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
+          <maml:para>The version of Exchange server to which to connect. Default is Exchange2013_SP1 and works with Exchange Online and newer versions of Exchange server.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">ExchangeVersion</command:parameterValue>
         <dev:type>
           <maml:name>ExchangeVersion</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="true" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="none">
+        <maml:name>Endpoint</maml:name>
+        <maml:Description>
+          <maml:para>Specifies the EWS Endpoint to use in order to bypass the Autodiscover process as an Uri .</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
+        <dev:type>
+          <maml:name>Uri</maml:name>
           <maml:uri />
         </dev:type>
         <dev:defaultValue>None</dev:defaultValue>
@@ -216,7 +416,18 @@ KeepAlive      Url                                                              
 ---------      ---                                                              ------------------
 True           https://outlook.office365.com/EWS/Exchange.asmx</dev:code>
         <dev:remarks>
-          <maml:para>Creates an Exchange Web Services connection using the supplied PSCredential.  The PSCredential can be created like $PSCredential = Get-Credential and entering the credentials in the prompt.</maml:para>
+          <maml:para>Creates an Exchange Web Services connection using the supplied PSCredential . The PSCredential can be created like $PSCredential = Get-Credential and entering the credentials in the prompt.</maml:para>
+        </dev:remarks>
+      </command:example>
+      <command:example>
+        <maml:title>-------------------------- Example 2 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Connect-Ews -Credential $PSCredential -Endpoint https://mail.contoso.com/EWS/Exchange.asmx
+
+KeepAlive      Url                                                              ImpersonatedUserId
+---------      ---                                                              ------------------
+True           https://mail.contoso.com/EWS/Exchange.asmx</dev:code>
+        <dev:remarks>
+          <maml:para>Creates and Exchange Web Services connection using the supplied PSCredential and Uri for the endpoint.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

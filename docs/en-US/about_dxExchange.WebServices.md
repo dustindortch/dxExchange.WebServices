@@ -37,7 +37,7 @@ FolderClass    DisplayName                      TotalCount   UnreadCount
 IPF.Note       Inbox                            76496        60099
 ```
 ```powershell
-PS C:\> $Items = Get-EwsFolderItem -FolderName $Folder -Service $ExchangeService -First 2
+PS C:\> $Items = Get-EwsFolderItem -Folder $Folder -Service $ExchangeService -First 2
 PS C:\> $Items
 ```
 ```
