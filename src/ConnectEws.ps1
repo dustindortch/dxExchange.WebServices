@@ -52,20 +52,21 @@ Function Connect-Ews {
         $EmailAddress = $UserPrincipalName
     }
 
-    $TestUrlCallback = {
-        param([String] $Url)
-        Write-Verbose "AUTODISCOVER REDIRECT: $Url"
-        If($Url -eq 'https://autodiscover-s.outlook.com/autodiscover/autodiscover.xml') {$True} Else {$False}
-    }
-
     $Credentials = New-Object System.Net.NetworkCredential($UserPrincipalName,$PlaintextPwd)
     $Script:Service = New-Object Microsoft.Exchange.WebServices.Data.ExchangeService($Version)
     $Script:Service.Credentials = $Credentials
+
     Try {
         If($Endpoint) {
             Write-Verbose "EWS ENDPOINT: $Endpoint"
             $Service.Url = $Endpoint
         } Else {
+            $TestUrlCallback = {
+                Param([Uri]$Url)
+                Write-Verbose "AUTODISCOVER REDIRECT: $Url"
+                If($Url -eq 'https://autodiscover-s.outlook.com/autodiscover/autodiscover.xml') {$True} Else {$False}
+            }
+
             $Service.AutodiscoverUrl($EmailAddress, $TestUrlCallback)
         }
     } Catch {
