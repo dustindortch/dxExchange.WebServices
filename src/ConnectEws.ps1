@@ -48,7 +48,7 @@ Function Connect-Ews {
         [String]$PlaintextPwd = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
     }
 
-    If(!($EmailAddress)) {
+    If(-Not $EmailAddress) {
         $EmailAddress = $UserPrincipalName
     }
 
