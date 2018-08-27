@@ -120,7 +120,7 @@ Accept wildcard characters: False
 ```
 
 ### -Service
-Optionally, specifies an ExchangeService object to set the impersonation mailbox.
+Optionally, specifies an ExchangeService object.
 
 ```yaml
 Type: Microsoft.Exchange.WebServices.Data.ExchangeService

@@ -440,6 +440,313 @@ True           https://mail.contoso.com/EWS/Exchange.asmx</dev:code>
   </command:command>
   <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
     <command:details>
+      <command:name>Get-EwsChildFolder</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>EwsChildFolder</command:noun>
+      <maml:description>
+        <maml:para>Returns a the child folders of the specified folder object.</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Returns the child folders of the specified folder object.  It defaults to 1000 total child folders, but that can be modified with the FolderView parameter.  Utilizes the FindFolders method of the ExchangeService and only uses the Shallow depth of the Traversal property, as opposed to the Deep depth which would grab all subfolders.</maml:para>
+      <maml:para>This is depended on by the Get-EwsFolder cmdlet.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-EwsChildFolder</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>Folder</maml:name>
+          <maml:Description>
+            <maml:para>Supplies the parent folder to find the child folders.  Should be of type Microsoft.Exchange.WebServices.Data.Folder or Microsoft.Exchange.WebServices.Data.WellKnownFolderName .</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>FolderView</maml:name>
+          <maml:Description>
+            <maml:para>Provides the maximum number of folders to return.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">FolderView</command:parameterValue>
+          <dev:type>
+            <maml:name>FolderView</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>1000</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>Service</maml:name>
+          <maml:Description>
+            <maml:para>Optionally, specifies an ExchangeService object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ExchangeService</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeService</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>Folder</maml:name>
+        <maml:Description>
+          <maml:para>Supplies the parent folder to find the child folders.  Should be of type Microsoft.Exchange.WebServices.Data.Folder or Microsoft.Exchange.WebServices.Data.WellKnownFolderName .</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>FolderView</maml:name>
+        <maml:Description>
+          <maml:para>Provides the maximum number of folders to return.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">FolderView</command:parameterValue>
+        <dev:type>
+          <maml:name>FolderView</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>1000</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>Service</maml:name>
+        <maml:Description>
+          <maml:para>Optionally, specifies an ExchangeService object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ExchangeService</command:parameterValue>
+        <dev:type>
+          <maml:name>ExchangeService</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.Folder</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; Get-EwsChildItem -Folder Inbox
+
+FolderClass DisplayName TotalCount UnreadCount
+----------- ----------- ---------- -----------
+IPF.Note    Subfolder   1          1</dev:code>
+        <dev:remarks>
+          <maml:para>Lists the subfolders of the Inbox folder.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Microsoft.Exchange.WebServices.Data.Folder</maml:linkText>
+        <maml:uri>https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data.folder?view=exchange-ews-api</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
+      <command:name>Get-EwsFolder</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>EwsFolder</command:noun>
+      <maml:description>
+        <maml:para>Returns a single folder object, given a folder or folder path</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>Returns a single folder object, given a folder or folder path, that can be used to get folder items or perform other tasks.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-EwsFolder</maml:name>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+          <maml:name>FolderPath</maml:name>
+          <maml:Description>
+            <maml:para>The hierarchical path to a leaf folder</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+          <dev:type>
+            <maml:name>Object</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+          <maml:name>WellKnownFolder</maml:name>
+          <maml:Description>
+            <maml:para>Provide a WellKnownFolderName to start as the root of the hierarchy.</maml:para>
+          </maml:Description>
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" command:variableLength="false">Calendar</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Contacts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">DeletedItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Drafts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Inbox</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Journal</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Notes</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Outbox</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SentItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Tasks</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">MsgFolderRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">PublicFoldersRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Root</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">JunkEmail</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SearchFolders</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">VoiceMail</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsDeletions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsVersions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecoverableItemsPurges</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveMsgFolderRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveDeletedItems</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsRoot</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsDeletions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsVersions</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ArchiveRecoverableItemsPurges</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">SyncIssues</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">Conflicts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">LocalFailures</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ServerFailures</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">RecipientCache</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">QuickContacts</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ConversationHistory</command:parameterValue>
+            <command:parameterValue required="false" command:variableLength="false">ToDoSearch</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">WellKnownFolderName</command:parameterValue>
+          <dev:type>
+            <maml:name>WellKnownFolderName</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+        <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+          <maml:name>Service</maml:name>
+          <maml:Description>
+            <maml:para>Optionally, specifies an ExchangeService object.</maml:para>
+          </maml:Description>
+          <command:parameterValue required="true" variableLength="false">ExchangeService</command:parameterValue>
+          <dev:type>
+            <maml:name>ExchangeService</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>None</dev:defaultValue>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="0" aliases="none">
+        <maml:name>FolderPath</maml:name>
+        <maml:Description>
+          <maml:para>The hierarchical path to a leaf folder</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">Object</command:parameterValue>
+        <dev:type>
+          <maml:name>Object</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="2" aliases="none">
+        <maml:name>Service</maml:name>
+        <maml:Description>
+          <maml:para>Optionally, specifies an ExchangeService object.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">ExchangeService</command:parameterValue>
+        <dev:type>
+          <maml:name>ExchangeService</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+      <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="1" aliases="none">
+        <maml:name>WellKnownFolder</maml:name>
+        <maml:Description>
+          <maml:para>Provide a WellKnownFolderName to start as the root of the hierarchy.</maml:para>
+        </maml:Description>
+        <command:parameterValue required="true" variableLength="false">WellKnownFolderName</command:parameterValue>
+        <dev:type>
+          <maml:name>WellKnownFolderName</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>None</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>None</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Exchange.WebServices.Data.Folder</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para></maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para></maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>-------------------------- Example 1 --------------------------</maml:title>
+        <dev:code>PS C:\&gt; $Folder = Get-EwsFolder -FolderPath Inbox\Subfolder
+PS C:\&gt; $Folder</dev:code>
+        <dev:remarks>
+          <maml:para>Gets the ~Subfolder~ folder from within the ~Inbox~.</maml:para>
+        </dev:remarks>
+      </command:example>
+    </command:examples>
+    <command:relatedLinks>
+      <maml:navigationLink>
+        <maml:linkText>Microsoft.Exchange.WebServices.Data.Folder</maml:linkText>
+        <maml:uri>https://docs.microsoft.com/en-us/dotnet/api/microsoft.exchange.webservices.data.folder?view=exchange-ews-api</maml:uri>
+      </maml:navigationLink>
+    </command:relatedLinks>
+  </command:command>
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+    <command:details>
       <command:name>Get-EwsFolderItem</command:name>
       <command:verb>Get</command:verb>
       <command:noun>EwsFolderItem</command:noun>
@@ -503,7 +810,7 @@ True           https://mail.contoso.com/EWS/Exchange.asmx</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
           <maml:name>Service</maml:name>
           <maml:Description>
-            <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+            <maml:para>Optionally, specifies an ExchangeService object.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
           <dev:type>
@@ -589,7 +896,7 @@ True           https://mail.contoso.com/EWS/Exchange.asmx</dev:code>
         <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
           <maml:name>Service</maml:name>
           <maml:Description>
-            <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+            <maml:para>Optionally, specifies an ExchangeService object.</maml:para>
           </maml:Description>
           <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
           <dev:type>
@@ -688,7 +995,7 @@ True           https://mail.contoso.com/EWS/Exchange.asmx</dev:code>
       <command:parameter required="false" variableLength="true" globbing="false" pipelineInput="False" position="named" aliases="None">
         <maml:name>Service</maml:name>
         <maml:Description>
-          <maml:para>Optionally, specifies an ExchangeService object to set the impersonation mailbox.</maml:para>
+          <maml:para>Optionally, specifies an ExchangeService object.</maml:para>
         </maml:Description>
         <command:parameterValue required="true" variableLength="false">Microsoft.Exchange.WebServices.Data.ExchangeService</command:parameterValue>
         <dev:type>
