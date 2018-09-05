@@ -41,12 +41,28 @@ Function Get-EwsFolderItem {
     )
 
     If ($Last) {
-        $ItemView = New-Object Microsoft.Exchange.WebServices.Data.ItemView($ResultSize,$Skip,[Microsoft.Exchange.WebServices.Data.OffsetBasePoint]::End)
+        $Offset = [Microsoft.Exchange.WebServices.Data.OffsetBasePoint]::End
     } Else {
-        $ItemView = New-Object Microsoft.Exchange.WebServices.Data.ItemView($ResultSize,$Skip,[Microsoft.Exchange.WebServices.Data.OffsetBasePoint]::Beginning)
+        $Offset = [Microsoft.Exchange.WebServices.Data.OffsetBasePoint]::Beginning
     }
 
-    If($StartDate -or $EndDate) {
+    If($Folder.FolderClass -eq 'IPF.Appointment') {
+        If($StartDate) {
+            $CalendarStartDate = $StartDate
+        } Else {
+            $CalendarStartDate = Get-Date
+        }
+        If($EndDate) {
+            $CalendarEndDate = $EndDate
+        } Else {
+            $CalendarEndDate = (Get-Date).AddMonths(6)
+        }
+        $ItemView = New-Object Microsoft.Exchange.WebServices.Data.CalendarView($CalendarStartDate,$CalendarEndDate,$ResultSize)
+    } Else {
+        $ItemView = New-Object Microsoft.Exchange.WebServices.Data.ItemView($ResultSize,$Skip,$Offset)
+    }
+
+    If(($StartDate -or $EndDate) -and $Folder.FolderClass -ne 'IPF.Appointment') {
         $SearchFilter = New-Object Microsoft.Exchange.WebServices.Data.SearchFilter+SearchFilterCollection([Microsoft.Exchange.WebServices.Data.LogicalOperator]::And)
         If($StartDate) {
             $AfterFilter = New-Object Microsoft.Exchange.WebServices.Data.SearchFilter+IsGreaterThan([Microsoft.Exchange.WebServices.Data.ItemSchema]::DateTimeReceived,$StartDate)
@@ -59,6 +75,7 @@ Function Get-EwsFolderItem {
         }
         $Items = $Service.FindItems($Folder.Id,$SearchFilter,$ItemView)
     } Else {
+        Write-Verbose 'Calendar or no dates'
         $Items = $Service.FindItems($Folder.Id,$ItemView)
     }
 
