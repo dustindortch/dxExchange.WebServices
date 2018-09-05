@@ -49,6 +49,9 @@ Function Get-EwsFolderItem {
     If($Folder.FolderClass -eq 'IPF.Appointment') {
         If($StartDate) {
             $CalendarStartDate = $StartDate
+            If(-Not $EndDate) {
+                $CalendarEndDate = $StartDate.AddMonths(6)
+            }
         } Else {
             $CalendarStartDate = Get-Date
         }
