@@ -77,8 +77,11 @@ Function Get-EwsFolderItem {
             $SearchFilter.Add($BeforeFilter)
         }
         $Items = $Service.FindItems($Folder.Id,$SearchFilter,$ItemView)
+    } ElseIf($Folder.FolderClass -eq 'IPF.Appointment') {
+        Write-Verbose 'Calendar'
+        $Items = $Service.FindAppointments($Folder.Id,$ItemView)
     } Else {
-        Write-Verbose 'Calendar or no dates'
+        Write-Verbose 'no dates'
         $Items = $Service.FindItems($Folder.Id,$ItemView)
     }
 
